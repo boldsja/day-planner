@@ -5,10 +5,10 @@ The purpose of this project is to have a day planner that is color coded based o
 
 ## Screenshot
 
-![Final page screenshot]() 
+![Final page screenshot](./assets/screenshot.png) 
 
 
 ## Link to Final Page
-[Password Generator link to final page]() 
+[Day Planner link to final page](https://boldsja.github.io/day-planner/) 
 
-[Github Repo]()
+[Github Repo](https://github.com/boldsja/day-planner)
