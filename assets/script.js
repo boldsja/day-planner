@@ -1,21 +1,59 @@
-var saveBtn = document.querySelector("#saveButton");
-var textarea = document.getElementById.text;
+$(document).ready(function(){
+    
 var currentTime = moment().format('LLLL')
-var time = document.getElementById("time");
+
 //var timeHT = $("#time")
 
-$("today").text(currentTime);
+$(".today").text(currentTime);
 
 //send to local storage when save clicked
-saveBtn
+
 
 //calendar date/time in heading
 $("span").text(currentTime);
 
+//saveBtn functionality
+$(".saveBtn").on("click", function(){
+    let textValue = $(this).siblings('.text').val();
+  //  console.log("textAreaValue", textValue);
+    let timeBlock = $(this).parent().attr("id");
+   // console.log("timeBlock", timeBlock);
+
+    localStorage.setItem(timeBlock, textValue);
+})
+
 //color coding
-if (parseInt(timeHT)<currentTime){
-    $("#text").css("background-color", "#d3d3d3")
-    console.log(timeHT);
+function keepinTime(){
+
+    let currentHour = moment().hours();
+  //  console.log("currenthour", currentHour);
+
+    $(".time-block").each(function(){
+        let timeBlockHour = parseInt($(this).attr("id"));
+      //  console.log("timeBlockHour", timeBlockHour);
+
+        if(timeBlockHour < currentHour){
+            $(this).addClass("past");
+        } else if(timeBlockHour === currentHour){
+            $(this).removeClass("past");
+            $(this).addClass("present");
+        } else {
+            $(this).removeClass("past");
+            $(this).removeClass("present");
+            $(this).addClass("future");
+        }
+    })
 }
 
-localStorage.setItem("plans", textarea);
+keepinTime()
+
+for(let i = 9; i< 17; i++){
+//$("#9 .text").val(localStorage.getItem("9"));
+
+// using back ticks and interpolation
+$(`#${i} .text`).val(localStorage.getItem(`${i}`));
+
+// using quotes and plus sign
+// $("#" + i + ".text").val(localStorage.getItem(i))
+}
+})
